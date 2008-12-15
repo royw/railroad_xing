@@ -34,6 +34,10 @@ class AasmDiagram < AppDiagram
   
   # Load model classes
   def load_classes
+    unless @framework.name == 'Rails'
+      print_error 'AASM diagrams only supported for Rails'
+      raise LoadError.new
+    end
     begin
       disable_stdout
       files = Dir.glob("app/models/**/*.rb")

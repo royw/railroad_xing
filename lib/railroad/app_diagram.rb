@@ -5,6 +5,7 @@
 # See COPYING for more details
 
 require 'railroad/diagram_graph'
+require 'railroad/framework_factory'
 
 # Root class for RailRoad diagrams
 class AppDiagram
@@ -34,11 +35,11 @@ class AppDiagram
     end
     
     if @options.xmi 
-        STDERR.print "Generating XMI diagram\n" if @options.verbose
+      STDERR.print "Generating XMI diagram\n" if @options.verbose
     	STDOUT.print @graph.to_xmi
     else
-        STDERR.print "Generating DOT graph\n" if @options.verbose
-        STDOUT.print @graph.to_dot 
+      STDERR.print "Generating DOT graph\n" if @options.verbose
+      STDOUT.print @graph.to_dot 
     end
 
     if @options.output
@@ -63,14 +64,16 @@ class AppDiagram
   # Print error when loading Rails application
   def print_error(type)
     STDERR.print "Error loading #{type}.\n  (Are you running " +
-                 "#{APP_NAME} on the aplication's root directory?)\n\n"
+                 "#{APP_NAME} on the application's root directory?)\n\n"
   end
 
   # Load Rails application's environment
   def load_environment
     begin
       disable_stdout
-      require "config/environment"
+      @framework = FrameworkFactory.getFramework
+      raise LoadError.new if @framework.nil?
+      @graph.migration_version = @framework.migration_version
       enable_stdout
     rescue LoadError
       enable_stdout
@@ -78,12 +81,26 @@ class AppDiagram
       raise
     end
   end
+  
+  # is the given class a subclass of the application controller?
+  def is_application_subclass?(klass)
+    @framework.is_application_subclass?(klass)
+  end
+  
+  # get the controller's files returning the application controller first in returned array
+  def get_controller_files(options)
+    @framework.get_controller_files(options)
+  end
 
   # Extract class name from filename
   def extract_class_name(filename)
-    #filename.split('/')[2..-1].join('/').split('.').first.camelize
-    # Fixed by patch from ticket #12742
-    File.basename(filename).chomp(".rb").camelize
+    @framework.extract_class_name(filename)
   end
 
+  # convert the give string to a constant
+  def constantize(str)
+    @framework.constantize(str)
+  end
+  
 end # class AppDiagram
+
