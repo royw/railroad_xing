@@ -1,0 +1,66 @@
+Installation Instructions
+
+1) Install railroad-0.5.0 gem:
+
+  sudo gem install railroad
+
+2) Replace the railroad gem directory with this get repository:
+
+  # clone the repository
+
+  cd path/for/repository
+  git clone git://github.com/royw/railroad.git  
+
+  # replace the railroad system gem
+
+  cd path/to/system/gems
+  sudo mv railroad-0.5.0 railroad-0.5.0.orig
+  sudo ln -s /path/for/repository/railroad railroad-0.5.0
+
+That should do it.
+
+
+Notes
+
+1) Tested on Merb 1.0.4 and DataMapper 0.9.7.
+
+2) Only generation for Models and Controllers is supported.  The AASM is a rails plugin so did not support AASM graphs.
+There is a similar plugin for datamapper (dm-is-state_machine) if anyone wants to tackle it.
+
+3) One caveat, RailRoad needs to be installed as a system gem, not installed into your application.  If you really must
+have railroad installed as an application gem, then you will need to move:
+
+from your_app/gems/gems/railroad-x.x.x/lib/railroad/merb_framework.rb:
+
+    require 'merb-core'
+    Merb.start_environment(:testing => true, :adapter => 'runner', :environment => ENV['MERB_ENV'] || 'test')
+
+to your_app/bin/railroad after the require statements and before the gem directory stuff.
+
+4) Example merb rake task:
+
+your_app/lib/tasks/doc.rake:
+
+  namespace :diagram do
+    desc 'generate model diagrams'
+    task :models do
+      sh "railroad -i -l -a -m -M | neato -Tsvg | sed 's/font-size:14.00/font-size:11.00/g' >
+doc/models.svg"
+    end
+
+    desc 'generate controller diagrams'
+    task :controllers do
+      sh "railroad -i -l -C | neato -Tsvg | sed 's/font-size:14.00/font-size:11.00/g' >
+doc/controllers.svg"
+    end
+  end
+
+  desc 'generate model and controller diagrams'
+  task :diagrams => %w(diagram:models diagram:controllers)
+
+
+5) The merb environment detection assumes that your application has a merb sub-directory (your_app/merb/).  The current version of merb-gen does create this sub-directory but older projects may need to:
+
+  cd your_app
+  touch merb
+
