@@ -4,6 +4,9 @@
 #
 # Warning, will automigrate the 'test' database
 #
+# Dec 2008 - Roy Wright
+# created to support the Merb application framework
+#
 class MerbFramework
   attr_reader :name, :migration_version
   

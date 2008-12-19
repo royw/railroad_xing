@@ -1,4 +1,8 @@
 # The "model" used to interact with DataMapper models.
+#
+# Dec 2008 - Roy Wright
+# created based on code from models_diagram adapted for DataMapper models.
+#
 class DM_Model
   def initialize(klass, options)
     @klass = klass

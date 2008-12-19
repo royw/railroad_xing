@@ -3,6 +3,9 @@
 #
 # Copyright 2007-2008 - Javier Smaldone (http://www.smaldone.com.ar)
 # See COPYING for more details
+#
+# Dec 2008 - Roy Wright
+# modified to support multiple application frameworks and ORMs
 
 require 'railroad/app_diagram'
 require 'railroad/model_factory'
@@ -54,7 +57,7 @@ class ModelsDiagram < AppDiagram
     node_attribs = []
     edges = []
     nodes = []
-    if @options.brief || model.abstract?
+    if @options.brief || (!model.nil? && model.abstract?)
       node_type = 'model-brief'
     else 
       node_type = 'model'

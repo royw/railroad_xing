@@ -6,6 +6,9 @@
 
 # AASM code provided by Ana Nelson (http://ananelson.com/)
 
+# Dec 2008 - Roy Wright
+# enable only for Rails as AASM is a Rails plugin
+
 require 'railroad/app_diagram'
 
 # Diagram for Acts As State Machine

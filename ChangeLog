@@ -1,3 +1,9 @@
+Version 0.5.0.1 (dec 19 2008)
+- Forked from http://railroad.rubyforge.org to http://github.com/royw/railroad_xing
+- Added support for Merb and DataMapper
+
+# Original ChangeLog from http://railroad.rubyforge.org:
+
 Version 0.5.0 (may 10 2008)
 - Changed model relationships representation (feature request #10898)
 - Added support for plugins models (-p) (feature request #12742 by 

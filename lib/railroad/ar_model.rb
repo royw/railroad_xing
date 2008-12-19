@@ -1,4 +1,8 @@
 # The "model" used to interact with ActiveRecord models.
+# 
+# Dec 2008 - Roy Wright
+# created class an refactored logic from models_diagram.rb
+#
 class AR_Model
   def initialize(klass, options)
     @klass = klass

@@ -7,6 +7,9 @@
 # 
 # framework = FrameworkFactory.getFramework
 #
+# Dec 2008 - Roy Wright
+# created to support multiple frameworks
+#
 class FrameworkFactory
   
   # the factory the returns a "framework" object or nil

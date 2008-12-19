@@ -1,4 +1,6 @@
-= RailRoad 
+= RailRoad_Xing
+
+Fork of http://railroad.rubyforge.org/ to add support for Merb and DataMapper.
 
 RailRoad generates models and controllers diagrams in DOT language for a 
 Rails or Merb application.
@@ -133,7 +135,8 @@ from Graphviz.
 
 = Website and Project Home
 
-http://railroad.rubyforge.org
+original: http://railroad.rubyforge.org
+fork: http://github.com/royw/railroad_xing
 
 = License
 
@@ -141,8 +144,12 @@ RailRoad is distributed  under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2 of the 
 License, or (at your option) any later version.
 
-= Author
+= Authors
 
+http://railroad.rubyforge.org
 Javier Smaldone 
 (javier -at- smaldone -dot- com -dot- ar, http://blog.smaldone.com.ar )
 
+http://github.com/royw/railroad_xing
+Roy Wright
+roy@wright.org

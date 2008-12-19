@@ -4,6 +4,10 @@ require 'railroad/dm_model'
 # A factory for discovering the ORM being used that will then return the
 # corresponding "model" that will be used to interact with the ORM.  Will
 # return nil if unable to discover a supported ORM.
+#
+# Dec 2008 - Roy Wright
+# created to support multiple ORMs
+#
 class ModelFactory
   def self.getModel(klass, options)
     model = nil

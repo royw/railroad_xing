@@ -1,5 +1,8 @@
 # A class that encapsulates the interaction with the Rails framework.
 #
+# Dec 2008 - Roy Wright
+# created to support the Rails application framework
+#
 class RailsFramework
   attr_reader :name, :migration_version
   

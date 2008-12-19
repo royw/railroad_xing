@@ -3,6 +3,9 @@
 #
 # Copyright 2007-2008 - Javier Smaldone (http://www.smaldone.com.ar)
 # See COPYING for more details
+#
+# Dec 2008 - Roy Wright
+# added FrameworkFactory to support multiple application frameworks
 
 require 'railroad/diagram_graph'
 require 'railroad/framework_factory'
