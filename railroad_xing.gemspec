@@ -9,7 +9,7 @@ SPEC = Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
   s.summary      = "A DOT diagram generator for Ruby web applications (Rails, Merb)"
   s.files        = Dir.glob("lib/railroad/*.rb") + 
-                   ["ChangeLog", "COPYING", "rake.gemspec"]
+                   ["ChangeLog", "COPYING", "railroad_xing.gemspec"]
   s.bindir       = "bin"
   s.executables  = ["railroad"]
   s.default_executable = "railroad"
