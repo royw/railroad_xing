@@ -14,7 +14,10 @@ class MerbFramework
   def initialize
     require 'merb-core'
     Merb.start_environment(:testing => true, :adapter => 'runner', :environment => ENV['MERB_ENV'] || 'test')
-    DataMapper.auto_migrate!
+    case Merb::Config[:merb_orm]
+      when :datamapper: DataMapper.auto_migrate!
+      when :activerecord: ActiveRecord::Migrator.migrate(File.expand_path(File.dirname(__FILE__) + "/schema/migrations"))
+    end
     @name = 'Merb'
     @migration_version = nil
   end

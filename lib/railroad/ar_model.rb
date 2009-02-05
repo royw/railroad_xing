@@ -6,6 +6,7 @@
 class AR_Model
   def initialize(klass, options)
     @klass = klass
+    @options = options
     # Processed habtm associations
     @habtm = []
   end
