@@ -20,7 +20,8 @@ class RailsFramework
   # get the controller's files returning the application controller first in returned array
   def get_controller_files(options)
     files = []
-    files << 'app/controllers/application.rb'
+    files << 'app/controllers/application_controller.rb' if File.exist?('app/controllers/application_controller.rb')
+    files << 'app/controllers/application.rb' if File.exist?('app/controllers/application.rb')
     files += Dir.glob("app/controllers/**/*_controller.rb") - options.exclude
     files.uniq
   end
