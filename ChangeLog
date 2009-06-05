@@ -1,3 +1,8 @@
+Version 0.5.0.2 (jun 5 2009)
+- Rails 2.3 changed the filename for ApplicationController from 
+  app/controllers/application.rb to app/controllers/application_controller.rb
+  Fix provided by Walt Jones http://waltgordonjones.com/218/using-railroad-with-rails-23
+
 Version 0.5.0.1 (dec 19 2008)
 - Forked from http://railroad.rubyforge.org to http://github.com/royw/railroad_xing
 - Added support for Merb and DataMapper

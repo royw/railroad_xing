@@ -1,6 +1,6 @@
 SPEC = Gem::Specification.new do |s|
   s.name         = "railroad_xing"
-  s.version      = "0.5.0.1"
+  s.version      = "0.5.0.2"
   s.authors      = ["Javier Smaldone", "Roy Wright"]
   s.email        = "roy@wright.org"
   s.homepage     = "http://github.com/royw/railroad_xing"
