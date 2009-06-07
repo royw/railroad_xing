@@ -37,7 +37,14 @@ class MerbFramework
   
   # Extract class name from filename
   def extract_class_name(filename)
-    File.basename(filename).chomp(".rb").camel_case
+    # handle subdirectories as modules
+    # i.e., app/controllers/foo/bar.rb => Foo::Bar
+    if filename =~ /^app\/controllers\/(.*)\.rb$/
+      class_name = $1.split('/').collect {|part| part.camel_case}.join('::')
+    else
+      class_name = File.basename(filename).chomp(".rb").camel_case
+    end
+    class_name
   end
 
   # convert the give string to a constant

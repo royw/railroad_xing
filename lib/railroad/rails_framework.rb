@@ -28,7 +28,13 @@ class RailsFramework
   
   # Extract class name from filename
   def extract_class_name(filename)
-    class_name = File.basename(filename).chomp(".rb").camelize
+    # handle subdirectories as modules
+    # i.e., app/controllers/foo/bar.rb => Foo::Bar
+    if filename =~ /^app\/controllers\/(.*)\.rb$/
+      class_name = $1.split('/').collect {|part| part.camel_case}.join('::')
+    else
+      class_name = File.basename(filename).chomp(".rb").camel_case
+    end
 
     if filename == 'app/controllers/application.rb'
       # ApplicationController's file is 'application.rb'
