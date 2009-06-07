@@ -15,11 +15,14 @@ Gem::Specification.new do |s|
      "README"
   ]
   s.files = [
-    "AUTHORS",
+    ".gitignore",
+     "AUTHORS",
      "COPYING",
      "ChangeLog",
      "INSTALL",
      "README",
+     "Rakefile",
+     "VERSION",
      "bin/railroad",
      "lib/railroad/aasm_diagram.rb",
      "lib/railroad/app_diagram.rb",
