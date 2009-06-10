@@ -31,9 +31,9 @@ class RailsFramework
     # handle subdirectories as modules
     # i.e., app/controllers/foo/bar.rb => Foo::Bar
     if filename =~ /^app\/controllers\/(.*)\.rb$/
-      class_name = $1.split('/').collect {|part| part.camel_case}.join('::')
+      class_name = $1.split('/').collect {|part| part.camelize}.join('::')
     else
-      class_name = File.basename(filename).chomp(".rb").camel_case
+      class_name = File.basename(filename).chomp(".rb").camelize
     end
 
     if filename == 'app/controllers/application.rb'
