@@ -25,6 +25,9 @@ class AasmDiagram < AppDiagram
   # Process model files
   def generate
     STDERR.print "Generating AASM diagram\n" if @options.verbose
+    
+    generate_new_aasm
+        
     files = Dir.glob("app/models/**/*.rb") 
     files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
     files -= @options.exclude
@@ -84,5 +87,30 @@ class AasmDiagram < AppDiagram
       end
     end
   end # process_class
+  
+  def generate_new_aasm
+    if defined?(AASM) && defined?(AASM::StateMachine) && (machines =   AASM::StateMachine.instance_variable_get(:'@machines'))
+        machines.map {|k, v| [k.first.name, v.states, v.events, v.initial_state]}.each do |name, states, events, initial_state|
+          states.each do |state|
+            node_shape = (initial_state == state.name) ? ", peripheries = 2" : ""
+            node_attribs = ["#{name.underscore}_#{state.name} [label=#{state.name} #{node_shape}];"]
+            @graph.add_node ['aasm', name, node_attribs]
+          end
+
+          events.each do |event_name, event|
+            event.instance_variable_get(:'@transitions').each do |transition|              
+              [*transition.from].each do |from|
+                @graph.add_edge [
+                  'event', 
+                  name.underscore + "_" + transition.from.to_s, 
+                  name.underscore + "_" + transition.to.to_s, 
+                  event.name.to_s
+                ]
+              end
+            end
+          end
+      end
+    end
+  end
 
 end # class AasmDiagram
