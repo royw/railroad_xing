@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{A DOT diagram generator for Ruby web applications (Rails, Merb)}
     gem.email = "roy@wright.org"
     gem.homepage = "http://github.com/royw/railroad_xing"
-    gem.authors = ["royw"]
+    gem.authors = ["Roy Wright"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
