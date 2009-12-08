@@ -32,6 +32,8 @@ class RailsFramework
     # i.e., app/controllers/foo/bar.rb => Foo::Bar
     if filename =~ /^app\/controllers\/(.*)\.rb$/
       class_name = $1.split('/').collect {|part| part.camelize}.join('::')
+    elsif filename =~ /^app\/models\/(.*)\.rb$/
+      class_name = $1.split('/').collect {|part| part.camelize}.join('::')
     else
       class_name = File.basename(filename).chomp(".rb").camelize
     end
